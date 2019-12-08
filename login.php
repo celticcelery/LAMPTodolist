@@ -1,5 +1,21 @@
 <?php
+require('config.php');
 if(isset($_POST['login'])){
-    echo 'it works';
+    $email = $_POST['username'];
+    $password = $_POST['password'];
+    $sql = "Select count(*) from users where email='{$email}' and password='{$password}'";
+    $result = $db->prepare($sql);
+    $result->execute();
+    $numRows = $result->fetchColumn();
+    if($numRows == 1) {
+        Header("Location: todolist.php");
+        exit();
+    }
+    else {
+        Header("Location: index.php");
+        exit();
+    }
 }
-?>
+
+
+//?>

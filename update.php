@@ -15,6 +15,7 @@ if(isset($_POST['update'])){
     $statement_update = $db->prepare($query);
     $resutl = $statement_update->execute();
     Header("Location: todolist.php");
+    exit();
 }
 ?>
 

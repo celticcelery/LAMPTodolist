@@ -1,12 +1,8 @@
 <?php
-//if(isset($_SESSION['userlogin'])) {
-//    header("Location: login.php");
-//}
-//if(isset($_GET['logout'])){
-//    session_destroy();
-//    unset($_SESSION);
-//    header("Location: login.php");
-//}
+if(isset($_POST['login'])){
+    $email = $_POST['username'];
+    $password = $_POST['password'];
+}
 require('config.php');
 
 //?>

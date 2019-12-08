@@ -6,18 +6,17 @@ if(isset($_POST['register'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "INSERT INTO users (firstname, lastname, email, password) VALUES('$firstname', '$lastname', '$email', '$password')";
-    $statement_create_user = $db->prepare($sql);
-    $result = $statement_create_user->execute();
-    if($result) {
-        echo "Saved";
+    $sql = "select count(*) from users where email='{$email}'";
+    $statement_check = $db->prepare($sql);
+    $result = $statement_check->execute();
+    $numRows = $statement_check->fetchColumn();
+    if ($numRows >= 1) {
+        echo 'A user with that email already exists.';
+    } else {
+        $sql = "INSERT INTO users (firstname, lastname, email, password) VALUES('$firstname', '$lastname', '$email', '$password')";
+        $statement_create_user = $db->prepare($sql);
+        $result = $statement_create_user->execute();
     }
-    else {
-        echo 'Error and not saved';
-    }
-}
-else {
-    echo "No data";
 }
 ?>
 <?php include('header.php') ?>

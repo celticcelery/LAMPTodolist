@@ -32,6 +32,7 @@ if(isset($_POST['update'])){
 <form action="todolist.php" method="post">
     <input type="text" name="task" required>
     <button type="submit" name="submit">Add Task</button>
+    <a href="index.php">Logout</a>
 </form>
 <div>
 
