@@ -14,7 +14,7 @@ if(isset($_POST['update'])){
     $query = "update tasks set task='$newTask' where id={$id}";
     $statement_update = $db->prepare($query);
     $resutl = $statement_update->execute();
-    Header("Location: index.php");
+    Header("Location: todolist.php");
 }
 ?>
 
