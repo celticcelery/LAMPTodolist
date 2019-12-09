@@ -49,7 +49,7 @@ if(isset($_POST['register'])) {
             </div>
         </div>
         <input type="submit" id="register" name="register" class="btn btn-primary" value="Register">
-        <a href="index.php" class="btn btn-secondary">Login</a></div>
+        <a href="index.php" class="btn btn-secondary">Back to Login</a></div>
 </form>
 </div>
 
