@@ -9,24 +9,29 @@ if(isset($_POST['search'])){
 ?>
 
 <?php include("header.php") ?>
-<h2>Searches</h2>
-<a href="todolist.php">back todo</a>
+<div class="row">
+    <h1 class="col-10 display-4">Searches</h1>
+    <a href="todolist.php" class="btn-lg btn-link col-2">Back TodoList</a>
+</div>
+
 <?php
 $countsql = "Select Count(*) from tasks where task like (?)";
 $statement_count = $db->prepare($countsql);
 $statement_count->execute(["%".$searchedTask."%"]);
 $numRows = $statement_count->fetchColumn();
 if($numRows < 1) {
-    echo 'no searches contained '.$searchedTask;
+    ?>
+    <p class="h2">No searches contained <?php echo $searchedTask;?></p>
+    <?php
 }
 else {
 $tasks = $statement_search->fetchAll(PDO::FETCH_OBJ);
 ?>
-<table>
+<table class="table border">
     <tr>
-        <th>task</th>
-        <th>date created</th>
-        <th>due date</th>
+        <th>Task</th>
+        <th>Date created</th>
+        <th>Due date</th>
     </tr>
     <?php foreach($tasks as $task): ?>
         <form action="todolist.php" method="post">
@@ -34,10 +39,8 @@ $tasks = $statement_search->fetchAll(PDO::FETCH_OBJ);
                 <td class="task"><?php echo $task->task; ?></td>
                 <td class="task"><?php echo $task->start; ?></td>
                 <td class="task"><?php echo $task->end; ?></td>
-                <td class="delete">
-                    <input type="hidden" name="delete_id" value="<?php echo $task->id; ?>">
-                    <input type="submit" name="delete" value="remove">
-                    <input type="hidden" name="update_id" value="<?php echo $task->id; ?>">
+                <td>
+                    <a href="delete.php?id=<?php echo $task->id;?>" class="btn btn-danger">Delete</a>
                     <a href="update.php?id=<?php echo $task->id;?>" class="btn btn-success">Edit</a>
                 </td>
             </tr>

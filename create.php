@@ -12,20 +12,21 @@ if(isset($_POST['submit'])){
 ?>
 
 <?php include('header.php')?>
-    <h2>Add a new task</h2>
+<div class="container-fluid">
+    <h1 >Add a new task</h1>
     <form action="create.php" method="post">
-        <div>
-            <label for="task">Task</label>
-            <input type="text" name="task" required>
+        <div class="form-group">
+            <label for="task" class="col-sm-1">Task</label>
+            <input type="text" name="task" class="col-6"required>
         </div>
-        <div>
-            <label for="date">Due date</label>
-            <input type="datetime-local" id="date" name="date" required>
+        <div class="form-group">
+            <label for="date" class="col-sm-1">Due date</label>
+            <input type="datetime-local" id="date" name="date" class="col-6" required>
         </div>
-        <input type="submit" name="submit" value="add task">
-
-
+        <div class="form-group">
+            <input type="submit" name="submit" class="btn btn-primary" value="Add Task">
+            <a href="todolist.php" id="todolist" class="btn btn-secondary">Back TodoList</a>
+        </div>
     </form>
-    <a href="todolist.php" id="todolist">back todolist</a>
-
+</div>
 <?php include('footer.php')?>
