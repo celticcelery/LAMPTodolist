@@ -1,10 +1,12 @@
 <?php
 require("config.php");
+session_start();
 if(isset($_POST['submit'])){
     $task = $_POST['task'];
     $dueDate = $_POST['date'];
     $timeAdded = date("Y-m-d H:i:s");
-    $query = "Insert into tasks (task, start, end) values((?), '{$timeAdded}', '{$dueDate}')";
+    $userId = $_SESSION['userId'];
+    $query = "Insert into tasks (task, start, end, userId) values((?), '{$timeAdded}', '{$dueDate}', '{$userId}')";
     $statement_create = $db->prepare($query);
     $result = $statement_create->execute([$task]);
 }

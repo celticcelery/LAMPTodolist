@@ -12,6 +12,7 @@ unset($_SESSION['message']);
         <div class="user_card">
             <div class="d-flex justify-content-center form_container">
                 <form action="login.php" method="POST" class="form-check">
+                    <h2 class="display-4 d-flex justify-content-center mb-5">TodoList</h2>
                     <div class="input-group">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>

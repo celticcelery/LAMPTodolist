@@ -1,8 +1,10 @@
 <?php
 require('config.php');
+session_start();
 if(isset($_POST['search'])){
+    $userId = $_POST['userId'];
     $searchedTask = $_POST['search_item'];
-    $sql = "Select * from tasks where task like (?)";
+    $sql = "Select * from tasks where task like (?) and userId='$userId'";
     $statement_search = $db->prepare($sql);
     $result = $statement_search->execute(["%".$searchedTask."%"]);
 }
@@ -15,11 +17,12 @@ if(isset($_POST['search'])){
 </div>
 
 <?php
+
 $countsql = "Select Count(*) from tasks where task like (?)";
 $statement_count = $db->prepare($countsql);
 $statement_count->execute(["%".$searchedTask."%"]);
 $numRows = $statement_count->fetchColumn();
-if($numRows < 1) {
+if($numRows < 1 ) {
     ?>
     <p class="h2">No searches contained <?php echo $searchedTask;?></p>
     <?php

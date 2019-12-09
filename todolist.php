@@ -1,5 +1,9 @@
 <?php
 require("config.php");
+session_start();
+$userId = $_SESSION['userId'];
+//unset($_SESSION['userId']);
+//session_destroy();
 ?>
 
 <?php include 'header.php' ?>
@@ -26,7 +30,9 @@ require("config.php");
         </form>
     </div>
         <?php
-        $statement_select = $db->query('Select * from tasks');
+        $query = "Select * from tasks where userId='$userId'";
+        $statement_select = $db->prepare($query);
+        $statement_select->execute();
         $tasks = $statement_select->fetchAll(PDO::FETCH_OBJ);
         ?>
         <div>

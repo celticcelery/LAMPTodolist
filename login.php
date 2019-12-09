@@ -8,6 +8,12 @@ if(isset($_POST['login'])){
     $result->execute();
     $numRows = $result->fetchColumn();
     if($numRows == 1) {
+        $sql = "Select id from users where email='{$email}' and password='{$password}'";
+        $result = $db->prepare($sql);
+        $result->execute();
+        $idOfUser = $result->fetchColumn();
+        session_start();
+        $_SESSION['userId'] = $idOfUser;
         Header("Location: todolist.php");
         exit();
     }
