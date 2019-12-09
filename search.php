@@ -2,11 +2,12 @@
 require('config.php');
 session_start();
 if(isset($_POST['search'])){
-    $userId = $_POST['userId'];
+    $userId = $_SESSION['userId'];
     $searchedTask = $_POST['search_item'];
     $sql = "Select * from tasks where task like (?) and userId='$userId'";
     $statement_search = $db->prepare($sql);
     $result = $statement_search->execute(["%".$searchedTask."%"]);
+
 }
 ?>
 
@@ -18,7 +19,7 @@ if(isset($_POST['search'])){
 
 <?php
 
-$countsql = "Select Count(*) from tasks where task like (?)";
+$countsql = "Select Count(*) from tasks where task like (?) and userId='$userId'";
 $statement_count = $db->prepare($countsql);
 $statement_count->execute(["%".$searchedTask."%"]);
 $numRows = $statement_count->fetchColumn();

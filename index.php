@@ -4,6 +4,7 @@ session_start();
 echo $_SESSION['message'];
 session_destroy();
 unset($_SESSION['message']);
+unset($_SESSION['userId']);
 //?>
 
 <?php include 'header.php'?>
