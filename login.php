@@ -13,10 +13,9 @@ if(isset($_POST['login'])){
     }
     else {
         session_start();
-//        $_SESSION['message'] = $time;
         $_SESSION['message'] = "Invalid email or password.";
         Header("Location: index.php");
         exit();
     }
 }
-//?>
+?>

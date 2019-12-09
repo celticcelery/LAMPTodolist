@@ -8,7 +8,7 @@ require("config.php");
         <div class="col-10">
             <h2 class="display-4">Todo List</h2>
         </div>
-        <div class="col">
+        <div class="border-right">
             <a href="index.php" class="btn-lg btn-link">Logout</a>
         </div>
     </div>
