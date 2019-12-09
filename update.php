@@ -9,9 +9,9 @@ $task = $statement_search->fetch(PDO::FETCH_OBJ);
 if(isset($_POST['update'])){
     $newTask = $_POST['newTask'];
     $id = $_GET['id'];
-    $query = "update tasks set task='$newTask' where id={$id}";
+    $query = "update tasks set task=(?) where id=(?)";
     $statement_update = $db->prepare($query);
-    $resutl = $statement_update->execute();
+    $result = $statement_update->execute([$newTask, $id]);
     Header("Location: todolist.php");
     exit();
 }
