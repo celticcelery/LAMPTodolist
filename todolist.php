@@ -2,8 +2,6 @@
 require("config.php");
 session_start();
 $userId = $_SESSION['userId'];
-//unset($_SESSION['userId']);
-//session_destroy();
 ?>
 
 <?php include 'header.php' ?>

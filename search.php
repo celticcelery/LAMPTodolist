@@ -7,7 +7,6 @@ if(isset($_POST['search'])){
     $sql = "Select * from tasks where task like (?) and userId='$userId'";
     $statement_search = $db->prepare($sql);
     $result = $statement_search->execute(["%".$searchedTask."%"]);
-
 }
 ?>
 
