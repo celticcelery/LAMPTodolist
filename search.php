@@ -2,9 +2,9 @@
 require('config.php');
 if(isset($_POST['search'])){
     $searchedTask = $_POST['search_item'];
-    $sql = "Select * from tasks where task like '%'||(?)||'%'";
+    $sql = "Select * from tasks where task like (?)";
     $statement_search = $db->prepare($sql);
-    $result = $statement_search->execute([$searchedTask]);
+    $result = $statement_search->execute(["%".$searchedTask."%"]);
 }
 ?>
 
@@ -12,6 +12,14 @@ if(isset($_POST['search'])){
 <h2>Searches</h2>
 <a href="todolist.php">back todo</a>
 <?php
+$countsql = "Select Count(*) from tasks where task like (?)";
+$statement_count = $db->prepare($countsql);
+$statement_count->execute(["%".$searchedTask."%"]);
+$numRows = $statement_count->fetchColumn();
+if($numRows < 1) {
+    echo 'no searches contained '.$searchedTask;
+}
+else {
 $tasks = $statement_search->fetchAll(PDO::FETCH_OBJ);
 ?>
 <table>
@@ -36,4 +44,5 @@ $tasks = $statement_search->fetchAll(PDO::FETCH_OBJ);
         </form>
     <?php endforeach;?>
 </table>
+<?php } ?>
 <?php include("footer.php")?>
