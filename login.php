@@ -12,10 +12,10 @@ if(isset($_POST['login'])){
         exit();
     }
     else {
+        session_start();
+        $_SESSION['message'] = "Invalid email or password.";
         Header("Location: index.php");
         exit();
     }
 }
-
-
 //?>

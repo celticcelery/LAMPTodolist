@@ -35,5 +35,6 @@ if(isset($_POST['register'])) {
         <input type="submit" id="register" name="register" value="register">
         <a href="../index.php"></a>
     </form>
+    <a href="../index.php">login</a>
 </div>
 <?php include('footer.php') ?>

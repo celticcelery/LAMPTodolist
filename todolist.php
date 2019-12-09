@@ -55,6 +55,5 @@ if(isset($_POST['update'])){
 
     <?php endforeach;?>
 
-
 </div>
 <?php include 'footer.php'?>

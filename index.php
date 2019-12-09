@@ -1,10 +1,9 @@
 <?php
-if(isset($_POST['login'])){
-    $email = $_POST['username'];
-    $password = $_POST['password'];
-}
 require('config.php');
-
+session_start();
+echo $_SESSION['message'];
+session_destroy();
+unset($_SESSION['message']);
 //?>
 
 <?php include 'header.php'?>
