@@ -8,7 +8,6 @@ $task = $statement_search->fetch(PDO::FETCH_OBJ);
 $endTime = $task->end;
 $endTime = str_replace(" ", "T", $endTime);
 $endTime = substr($endTime, 0, -3);
-echo $endTime;
 
 if(isset($_POST['update'])){
     $newTask = $_POST['newTask'];

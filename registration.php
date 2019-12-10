@@ -1,5 +1,10 @@
 <?php
 require('config.php');
+
+function phpAlert($msg){
+    echo '<script type="text/javascript">alert("' . $msg . '")</script>';
+}
+
 if(isset($_POST['register'])) {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
@@ -10,12 +15,15 @@ if(isset($_POST['register'])) {
     $statement_check = $db->prepare($sql);
     $result = $statement_check->execute();
     $numRows = $statement_check->fetchColumn();
+
+
     if ($numRows >= 1) {
-        echo 'A user with that email already exists.';
+        phpAlert('Registration failed. A user with that email already exists.');
     } else {
         $sql = "INSERT INTO users (firstname, lastname, email, password) VALUES('$firstname', '$lastname', '$email', '$password')";
         $statement_create_user = $db->prepare($sql);
         $result = $statement_create_user->execute();
+        phpAlert("Registration passed");
     }
 }
 ?>
